@@ -30,9 +30,9 @@ public final class RemoteFeedLoader {
             switch result {
             case .success(let data, let response):
                 if response.statusCode == 200,
-                   let _ = try? JSONSerialization.jsonObject(with: data)
+                   let root = try? JSONDecoder().decode(Root.self, from: data)
                 {
-                    completion(.success([]))
+                    completion(.success(root.items))
                 } else {
                     completion(.failure(.invalidData))
                 }
@@ -50,5 +50,9 @@ public final class RemoteFeedLoader {
     public enum Result: Equatable {
         case success([FeedItem])
         case failure(Error)
+    }
+
+    private struct Root: Decodable {
+        let items: [FeedItem]
     }
 }
