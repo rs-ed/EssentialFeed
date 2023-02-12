@@ -8,13 +8,13 @@
 import XCTest
 
 protocol HTTPClient {
-    func get(url: URL)
+    func get(from url: URL)
 }
 
 class HTTPClientSpy: HTTPClient {
     var requestedURLs: [URL] = []
 
-    func get(url: URL) {
+    func get(from url: URL) {
         requestedURLs.append(url)
     }
 }
@@ -28,7 +28,7 @@ final class RemoteFeedLoader {
 
     func load() {
 
-        httpClient.get(url: URL(string: "https://example.com/")!)
+        httpClient.get(from: URL(string: "https://example.com/")!)
     }
 
 }
