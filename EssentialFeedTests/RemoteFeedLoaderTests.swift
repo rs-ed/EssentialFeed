@@ -39,4 +39,11 @@ final class RemoteFeedLoaderTests: XCTestCase {
         let sut = RemoteFeedLoader(httpClient: client)
         XCTAssertEqual(client.requestedURLs, [])
     }
+
+    func test_load_doesRequestDataFromHTTPClient() throws {
+        let client = HTTPClientSpy()
+        let sut = RemoteFeedLoader(httpClient: client)
+        sut.load()
+        XCTAssertEqual(client.requestedURLs.count, 1)
+    }
 }
