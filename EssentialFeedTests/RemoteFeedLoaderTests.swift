@@ -9,12 +9,12 @@ import XCTest
 import EssentialFeed
 
 final class RemoteFeedLoaderTests: XCTestCase {
-    func test_init_doesNotRequestDataFromHTTPClient() throws {
+    func test_init_doesNotRequestData() throws {
         let (_, client) = makeSUT()
         XCTAssertEqual(client.requestedURLs, [])
     }
 
-    func test_load_doesRequestDataFromHTTPClient() throws {
+    func test_load_requestsDataFromURL() throws {
         let url = URL(string: "https://example.com/")!
         let (sut, client) = makeSUT(url: url)
         sut.load()
