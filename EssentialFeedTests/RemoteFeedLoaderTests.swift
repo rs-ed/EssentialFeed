@@ -30,8 +30,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
     }
 
     func test_load_deliversErrorOnClientError() throws {
-        let url = URL(string: "https://example.com/")!
-        let (sut, client) = makeSUT(url: url)
+        let (sut, client) = makeSUT()
         expect(sut, toCompleteWithError: .connectivity, when: {
             let clientError: Error = URLError(.networkConnectionLost)
             client.complete(with: clientError)
@@ -39,8 +38,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
     }
 
     func test_load_deliversErrorOnNon200StatusCodeResponse() throws {
-        let url = URL(string: "https://example.com/")!
-        let (sut, client) = makeSUT(url: url)
+        let (sut, client) = makeSUT()
         let statusCodes = [199, 201, 300, 400, 500]
         statusCodes.enumerated().forEach { index, statusCode in
             expect(sut, toCompleteWithError: .invalidData, when: {
@@ -50,8 +48,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
     }
 
     func test_load_deliversErrorOn200ResponseWithInvalidJSON() throws {
-        let url = URL(string: "https://example.com/")!
-        let (sut, client) = makeSUT(url: url)
+        let (sut, client) = makeSUT()
         expect(sut, toCompleteWithError: .invalidData, when: {
             let invalidJSON = Data("invalid JSON".utf8)
             client.complete(withStatusCode: 200, data: invalidJSON)
