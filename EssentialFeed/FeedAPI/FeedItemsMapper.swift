@@ -9,14 +9,11 @@ import Foundation
 
 internal final class FeedItemsMapper {
     internal static func map(_ data: Data, from response: HTTPURLResponse) -> RemoteFeedLoader.Result {
-        if response.statusCode == ok_200,
-           let root = try? JSONDecoder().decode(Root.self, from: data)
-        {
-            return .success(root.feedItems)
-        } else {
+        guard response.statusCode == ok_200,
+              let root = try? JSONDecoder().decode(Root.self, from: data) else {
             return .failure(.invalidData)
         }
-
+        return .success(root.feedItems)
     }
 
     private static var ok_200: Int { 200 }
