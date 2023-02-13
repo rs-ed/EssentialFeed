@@ -84,15 +84,33 @@ final class RemoteFeedLoaderTests: XCTestCase {
 
     // MARK: - Helpers
 
-    func makeSUT(url: URL = URL(string: "https://example.com/")!)
-    -> ( sut: RemoteFeedLoader, client: HTTPClientSpy) {
+    private func makeSUT(
+        url: URL = URL(string: "https://example.com/")!,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> ( sut: RemoteFeedLoader, client: HTTPClientSpy) {
         let url = URL(string: "https://example.com/")!
         let client = HTTPClientSpy()
         let sut = RemoteFeedLoader(url: url, httpClient: client)
+        trackForMemoryLeaks(client, file: file, line: line)
+        trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, client)
     }
 
-    func makeItem(
+    private func trackForMemoryLeaks(
+        _ instance: AnyObject,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        addTeardownBlock { [weak instance] in
+            XCTAssertNil(
+                instance, "memory leak, instance should have been deallocated",
+                file: file, line: line
+            )
+        }
+    }
+
+    private func makeItem(
         id: UUID,
         description: String? = nil,
         location: String? = nil,
@@ -108,12 +126,12 @@ final class RemoteFeedLoaderTests: XCTestCase {
         return (model, json)
     }
 
-    func makeItemsJson(_ items: [[String:String]]) -> Data {
+    private func makeItemsJson(_ items: [[String:String]]) -> Data {
         let itemsJSON = ["items": items]
         return try! JSONSerialization.data(withJSONObject: itemsJSON)
     }
 
-    func expect(
+    private func expect(
         _ sut: RemoteFeedLoader,
         toCompleteWith result: RemoteFeedLoader.Result,
         when action: () -> Void,
@@ -126,7 +144,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
         XCTAssertEqual(capturedResults, [result], file: file, line: line)
     }
 
-    class HTTPClientSpy: HTTPClient {
+    private class HTTPClientSpy: HTTPClient {
         private var messages: [(url: URL, completion: (HTTPClientResult) -> Void)] = []
 
         var requestedURLs: [URL] { messages.map(\.url) }
