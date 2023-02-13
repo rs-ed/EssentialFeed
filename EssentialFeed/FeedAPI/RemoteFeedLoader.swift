@@ -29,11 +29,10 @@ public final class RemoteFeedLoader {
         httpClient.get(from: url) { result in
             switch result {
             case .success(let data, let response):
-                if response.statusCode == 200,
-                   let root = try? JSONDecoder().decode(Root.self, from: data)
-                {
-                    completion(.success(root.feedItems))
-                } else {
+                do {
+                    let items = try FeedItemsMapper.map(data: data, response: response)
+                    completion(.success(items))
+                } catch {
                     completion(.failure(.invalidData))
                 }
             case .failure(_):
@@ -52,23 +51,32 @@ public final class RemoteFeedLoader {
         case failure(Error)
     }
 
-    private struct Root: Decodable {
-        let items: [Item]
-
-        var feedItems: [FeedItem] {
-            items.map(\.feedItem)
+    private class FeedItemsMapper {
+        static func map(data: Data, response: HTTPURLResponse) throws -> [FeedItem] {
+            guard response.statusCode == 200 else {
+                throw RemoteFeedLoader.Error.invalidData
+            }
+            return try JSONDecoder().decode(Root.self, from: data).feedItems
         }
-    }
 
-    private struct Item: Decodable, Equatable {
-        let id: UUID
-        let description: String?
-        let location: String?
-        let image: URL
+        private struct Root: Decodable {
+            let items: [Item]
 
-        var feedItem: FeedItem {
-            FeedItem(id: id, description: description, location: location, imageURL: image)
+            var feedItems: [FeedItem] {
+                items.map(\.feedItem)
+            }
         }
-    }
 
+        private struct Item: Decodable, Equatable {
+            let id: UUID
+            let description: String?
+            let location: String?
+            let image: URL
+
+            var feedItem: FeedItem {
+                FeedItem(id: id, description: description, location: location, imageURL: image)
+            }
+        }
+
+    }
 }
