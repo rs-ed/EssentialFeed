@@ -82,6 +82,18 @@ final class RemoteFeedLoaderTests: XCTestCase {
         })
     }
 
+    func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+        let url = URL(string: "https://example.com/")!
+        let client = HTTPClientSpy()
+        var sut: RemoteFeedLoader? = RemoteFeedLoader(url: url, httpClient: client)
+        var capturedResults: [RemoteFeedLoader.Result] = []
+        sut?.load { capturedResults.append($0) }
+        sut = nil
+        let emptyItemsJSON = makeItemsJson([])
+        client.complete(withStatusCode: 200, data: emptyItemsJSON)
+        XCTAssertEqual(capturedResults, [])
+    }
+
     // MARK: - Helpers
 
     private func makeSUT(
@@ -89,7 +101,6 @@ final class RemoteFeedLoaderTests: XCTestCase {
         file: StaticString = #filePath,
         line: UInt = #line
     ) -> ( sut: RemoteFeedLoader, client: HTTPClientSpy) {
-        let url = URL(string: "https://example.com/")!
         let client = HTTPClientSpy()
         let sut = RemoteFeedLoader(url: url, httpClient: client)
         trackForMemoryLeaks(client, file: file, line: line)
