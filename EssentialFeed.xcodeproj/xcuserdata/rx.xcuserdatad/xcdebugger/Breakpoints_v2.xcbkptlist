@@ -71,54 +71,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E9F9B4C1-CD9B-43A5-8A4C-141460FE9AFF"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EssentialFeedTests/RemoteFeedLoaderTests.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "test_load_deliversItemsOn200ResponseWithJSONItems()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "E9F9B4C1-CD9B-43A5-8A4C-141460FE9AFF - 8da210715d670fe4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "EssentialFeedTests.RemoteFeedLoaderTests.test_load_deliversItemsOn200ResponseWithJSONItems() throws -&gt; ()"
-                  moduleName = "EssentialFeedTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rx/rs-ed/EssentialFeed/EssentialFeedTests/RemoteFeedLoaderTests.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "92"
-                  endingLineNumber = "92"
-                  offsetFromSymbolStart = "3607">
-               </Location>
-               <Location
-                  uuid = "E9F9B4C1-CD9B-43A5-8A4C-141460FE9AFF - 8da210715d670fe4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "EssentialFeedTests.RemoteFeedLoaderTests.test_load_deliversItemsOn200ResponseWithJSONItems() throws -&gt; ()"
-                  moduleName = "EssentialFeedTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rx/rs-ed/EssentialFeed/EssentialFeedTests/RemoteFeedLoaderTests.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "92"
-                  endingLineNumber = "92"
-                  offsetFromSymbolStart = "3653">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "3BC9C9C5-8E30-43C5-BDD5-48F4C58A4522"
             shouldBeEnabled = "No"
             ignoreCount = "0"
