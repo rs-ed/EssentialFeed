@@ -26,6 +26,24 @@ class URLSessionHTTPClient {
 
 final class URLSessionHTTPClientTests: XCTestCase {
 
+    func test_getFromURL_performsGETRequestWithURL() throws {
+        URLProtocolStub.startInterceptingRequests()
+        let url = URL(string: "http://a-url.com/")!
+        let exp = expectation(description: "Wait for request")
+
+        URLProtocolStub.observeRequests { request in
+            XCTAssertEqual(request.url, url)
+            XCTAssertEqual(request.httpMethod, "GET")
+            exp.fulfill()
+        }
+        let sut = URLSessionHTTPClient()
+        sut.get(from: url) { _ in }
+
+        wait(for: [exp], timeout: 2.0)
+
+        URLProtocolStub.stopInterceptingRequests()
+    }
+
     func test_getFromURL_failsOnRequestError() throws {
         URLProtocolStub.startInterceptingRequests()
         let url = URL(string: "http://a-url.com/")!
@@ -58,8 +76,14 @@ final class URLSessionHTTPClientTests: XCTestCase {
 
         static var stub: Stub?
 
+        static var requestObserver: ((URLRequest) -> Void)?
+
         static func stub(data: Data?, response: URLResponse?, error: Error?) {
             stub = Stub(data: data, response: response, error: error)
+        }
+
+        static func observeRequests(observer: @escaping (URLRequest) -> Void) {
+            Self.requestObserver = observer
         }
 
         static func startInterceptingRequests() {
@@ -69,9 +93,11 @@ final class URLSessionHTTPClientTests: XCTestCase {
         static func stopInterceptingRequests() {
             URLProtocol.unregisterClass(URLProtocolStub.self)
             stub = nil
+            requestObserver = nil
         }
 
         override class func canInit(with request: URLRequest) -> Bool {
+            Self.requestObserver?(request)
             return true
         }
 
