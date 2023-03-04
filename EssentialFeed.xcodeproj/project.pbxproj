@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		F31B959229B29B4500AF2AB6 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31B959129B29B4500AF2AB6 /* URLSessionHTTPClient.swift */; };
+		F31B959A29B2A2E500AF2AB6 /* EssentialFeedAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31B959929B2A2E500AF2AB6 /* EssentialFeedAPIEndToEndTests.swift */; };
+		F31B959B29B2A2E500AF2AB6 /* EssentialFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38A5CFB299911AB0031D4EA /* EssentialFeed.framework */; };
 		F3601CB729A5550500FA864F /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3601CB629A5550500FA864F /* URLSessionHTTPClientTests.swift */; };
 		F3601CBA29A97E6600FA864F /* XCTTestCaseMemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3601CB929A97E6600FA864F /* XCTTestCaseMemoryLeakTracking.swift */; };
 		F38A5D04299911AB0031D4EA /* EssentialFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38A5CFB299911AB0031D4EA /* EssentialFeed.framework */; };
@@ -21,6 +23,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		F31B959C29B2A2E500AF2AB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F38A5CF2299911AB0031D4EA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F38A5CFA299911AB0031D4EA;
+			remoteInfo = EssentialFeed;
+		};
 		F38A5D05299911AB0031D4EA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F38A5CF2299911AB0031D4EA /* Project object */;
@@ -32,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		F31B959129B29B4500AF2AB6 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
+		F31B959729B2A2E500AF2AB6 /* EssentialFeedAPIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeedAPIEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F31B959929B2A2E500AF2AB6 /* EssentialFeedAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialFeedAPIEndToEndTests.swift; sourceTree = "<group>"; };
 		F3601CB629A5550500FA864F /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
 		F3601CB929A97E6600FA864F /* XCTTestCaseMemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTTestCaseMemoryLeakTracking.swift; sourceTree = "<group>"; };
 		F38A5CFB299911AB0031D4EA /* EssentialFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EssentialFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +57,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F31B959429B2A2E500AF2AB6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F31B959B29B2A2E500AF2AB6 /* EssentialFeed.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F38A5CF8299911AB0031D4EA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -64,6 +83,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F31B959829B2A2E500AF2AB6 /* EssentialFeedAPIEndToEndTests */ = {
+			isa = PBXGroup;
+			children = (
+				F31B959929B2A2E500AF2AB6 /* EssentialFeedAPIEndToEndTests.swift */,
+			);
+			path = EssentialFeedAPIEndToEndTests;
+			sourceTree = "<group>";
+		};
 		F3601CB829A97DE500FA864F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +104,7 @@
 			children = (
 				F38A5CFD299911AB0031D4EA /* EssentialFeed */,
 				F38A5D07299911AB0031D4EA /* EssentialFeedTests */,
+				F31B959829B2A2E500AF2AB6 /* EssentialFeedAPIEndToEndTests */,
 				F38A5CFC299911AB0031D4EA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -86,6 +114,7 @@
 			children = (
 				F38A5CFB299911AB0031D4EA /* EssentialFeed.framework */,
 				F38A5D03299911AB0031D4EA /* EssentialFeedTests.xctest */,
+				F31B959729B2A2E500AF2AB6 /* EssentialFeedAPIEndToEndTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,6 +181,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		F31B959629B2A2E500AF2AB6 /* EssentialFeedAPIEndToEndTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F31B959E29B2A2E500AF2AB6 /* Build configuration list for PBXNativeTarget "EssentialFeedAPIEndToEndTests" */;
+			buildPhases = (
+				F31B959329B2A2E500AF2AB6 /* Sources */,
+				F31B959429B2A2E500AF2AB6 /* Frameworks */,
+				F31B959529B2A2E500AF2AB6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F31B959D29B2A2E500AF2AB6 /* PBXTargetDependency */,
+			);
+			name = EssentialFeedAPIEndToEndTests;
+			productName = EssentialFeedAPIEndToEndTests;
+			productReference = F31B959729B2A2E500AF2AB6 /* EssentialFeedAPIEndToEndTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		F38A5CFA299911AB0031D4EA /* EssentialFeed */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F38A5D0D299911AB0031D4EA /* Build configuration list for PBXNativeTarget "EssentialFeed" */;
@@ -198,6 +245,9 @@
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
+					F31B959629B2A2E500AF2AB6 = {
+						CreatedOnToolsVersion = 14.2;
+					};
 					F38A5CFA299911AB0031D4EA = {
 						CreatedOnToolsVersion = 14.2;
 						LastSwiftMigration = 1420;
@@ -222,11 +272,19 @@
 			targets = (
 				F38A5CFA299911AB0031D4EA /* EssentialFeed */,
 				F38A5D02299911AB0031D4EA /* EssentialFeedTests */,
+				F31B959629B2A2E500AF2AB6 /* EssentialFeedAPIEndToEndTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		F31B959529B2A2E500AF2AB6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F38A5CF9299911AB0031D4EA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -244,6 +302,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F31B959329B2A2E500AF2AB6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F31B959A29B2A2E500AF2AB6 /* EssentialFeedAPIEndToEndTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F38A5CF7299911AB0031D4EA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -270,6 +336,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		F31B959D29B2A2E500AF2AB6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F38A5CFA299911AB0031D4EA /* EssentialFeed */;
+			targetProxy = F31B959C29B2A2E500AF2AB6 /* PBXContainerItemProxy */;
+		};
 		F38A5D06299911AB0031D4EA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F38A5CFA299911AB0031D4EA /* EssentialFeed */;
@@ -278,6 +349,36 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		F31B959F29B2A2E500AF2AB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = EE29XD2KE9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.2rs.EssentialFeedAPIEndToEndTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		F31B95A029B2A2E500AF2AB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = EE29XD2KE9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.2rs.EssentialFeedAPIEndToEndTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		F38A5D0B299911AB0031D4EA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -497,6 +598,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F31B959E29B2A2E500AF2AB6 /* Build configuration list for PBXNativeTarget "EssentialFeedAPIEndToEndTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F31B959F29B2A2E500AF2AB6 /* Debug */,
+				F31B95A029B2A2E500AF2AB6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F38A5CF5299911AB0031D4EA /* Build configuration list for PBXProject "EssentialFeed" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
