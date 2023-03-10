@@ -13,8 +13,6 @@ final class EssentialFeedAPIEndToEndTests: XCTestCase {
         switch getFeedResult() {
         case let .success(feedItems):
             XCTAssertEqual(feedItems.count, 8, "Expected 8 items in the test account feed")
-//            feedItems.enumerated().forEach { (index, item) in
-//                XCTAssertEqual(item, expectedItem(at: index))
                 XCTAssertEqual(feedItems[0], expectedItem(at: 0))
                 XCTAssertEqual(feedItems[1], expectedItem(at: 1))
                 XCTAssertEqual(feedItems[2], expectedItem(at: 2))
@@ -23,7 +21,6 @@ final class EssentialFeedAPIEndToEndTests: XCTestCase {
                 XCTAssertEqual(feedItems[5], expectedItem(at: 5))
                 XCTAssertEqual(feedItems[6], expectedItem(at: 6))
                 XCTAssertEqual(feedItems[7], expectedItem(at: 7))
-//            }
         case .failure(let error):
             XCTFail("expected success, got \(error)")
         case nil:
@@ -34,8 +31,9 @@ final class EssentialFeedAPIEndToEndTests: XCTestCase {
     // HELPERS:
 
     private func getFeedResult(file: StaticString = #filePath, line: UInt = #line) -> LoadFeedResult? {
+
         let url = URL(string: "https://essentialdeveloper.com/feed-case-study/test-api/feed")!
-        let client = URLSessionHTTPClient()
+        let client = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
         let loader = RemoteFeedLoader(url: url, httpClient: client)
         trackForMemoryLeaks(client, file: file, line: line)
         trackForMemoryLeaks(loader)
