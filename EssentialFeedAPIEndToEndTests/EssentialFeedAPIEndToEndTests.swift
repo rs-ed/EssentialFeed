@@ -11,16 +11,16 @@ import XCTest
 final class EssentialFeedAPIEndToEndTests: XCTestCase {
     func test_endToEndTestServerGETFeedResult_matchesFixedTestAccountData() {
         switch getFeedResult() {
-        case let .success(feedItems):
-            XCTAssertEqual(feedItems.count, 8, "Expected 8 items in the test account feed")
-                XCTAssertEqual(feedItems[0], expectedItem(at: 0))
-                XCTAssertEqual(feedItems[1], expectedItem(at: 1))
-                XCTAssertEqual(feedItems[2], expectedItem(at: 2))
-                XCTAssertEqual(feedItems[3], expectedItem(at: 3))
-                XCTAssertEqual(feedItems[4], expectedItem(at: 4))
-                XCTAssertEqual(feedItems[5], expectedItem(at: 5))
-                XCTAssertEqual(feedItems[6], expectedItem(at: 6))
-                XCTAssertEqual(feedItems[7], expectedItem(at: 7))
+        case let .success(imageFeed):
+            XCTAssertEqual(imageFeed.count, 8, "Expected 8 images in the test account image feed")
+                XCTAssertEqual(imageFeed[0], expectedImage(at: 0))
+                XCTAssertEqual(imageFeed[1], expectedImage(at: 1))
+                XCTAssertEqual(imageFeed[2], expectedImage(at: 2))
+                XCTAssertEqual(imageFeed[3], expectedImage(at: 3))
+                XCTAssertEqual(imageFeed[4], expectedImage(at: 4))
+                XCTAssertEqual(imageFeed[5], expectedImage(at: 5))
+                XCTAssertEqual(imageFeed[6], expectedImage(at: 6))
+                XCTAssertEqual(imageFeed[7], expectedImage(at: 7))
         case .failure(let error):
             XCTFail("expected success, got \(error)")
         case nil:
@@ -47,8 +47,8 @@ final class EssentialFeedAPIEndToEndTests: XCTestCase {
         return receivedResult
     }
 
-    func expectedItem(at index: Int) -> FeedItem {
-        FeedItem(id: id(at: index), description: description(at: index), location: location(at: index), imageURL: url(at: index))
+    func expectedImage(at index: Int) -> FeedImage {
+        FeedImage(id: id(at: index), description: description(at: index), location: location(at: index), url: url(at: index))
     }
 
     func id(at index: Int) -> UUID {
