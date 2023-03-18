@@ -19,6 +19,8 @@ public final class LocalFeedLoader {
     private let store: FeedStore
     private let currentDate: () -> Date
 
+    private let calendar = Calendar(identifier: .gregorian)
+
     public func save(_ feed: [FeedImage], completion: @escaping (SaveResult) -> Void) {
         store.deleteCachedFeed { [weak self] cacheDeletionError in
             guard let self else { return }
@@ -43,9 +45,10 @@ public final class LocalFeedLoader {
         }
     }
 
+    private var macCacheAgeInDays: Int { 7 }
+
     private func validate(timestamp: Date) -> Bool {
-        let calendar = Calendar(identifier: .gregorian)
-        guard let maxCacheDate = calendar.date(byAdding: .day, value: 7, to: timestamp) else {
+        guard let maxCacheDate = calendar.date(byAdding: .day, value: macCacheAgeInDays, to: timestamp) else {
             return false
         }
         return currentDate() < maxCacheDate
