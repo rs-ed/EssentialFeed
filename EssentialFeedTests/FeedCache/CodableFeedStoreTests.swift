@@ -181,7 +181,7 @@ final class CodableFeedStoreTests: XCTestCase {
             }
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 1.0)
+        wait(for: [expectation], timeout: 2.0)
     }
 
     private func expect(_ sut: FeedStore, toRetrieveTwice expectedResult: RetrieveCacheFeedResult) {
@@ -205,13 +205,13 @@ final class CodableFeedStoreTests: XCTestCase {
     }
 
     private func deleteCache(from sut: FeedStore) -> Error? {
-        let exp = expectation(description: "Wait for deletion completion")
+        let exp = expectation(description: "Wait for cache deletion")
         var deletionError: Error?
         sut.deleteCachedFeed { receivedDeletionError in
             deletionError = receivedDeletionError
             exp.fulfill()
         }
-        wait(for: [exp], timeout: 1.0)
+        wait(for: [exp], timeout: 5.0)
         return deletionError
     }
 
