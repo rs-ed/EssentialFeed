@@ -168,14 +168,7 @@ final class CodableFeedStoreTests: XCTestCase {
     func test_delete_hasNoSideEffectsOnEmptyCache() {
         let sut = makeSUT()
 
-        let exp = expectation(description: "Wait for deletion completion")
-        var deletionError: Error?
-        sut.deleteCachedFeed { receivedDeletionError in
-            deletionError = receivedDeletionError
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: 1.0)
-
+        var deletionError = deleteCache(from: sut)
         XCTAssertNil(deletionError, "Expected empty cache deletion to succeed")
 
         expect(sut, toRetrieve: .empty)
@@ -184,17 +177,10 @@ final class CodableFeedStoreTests: XCTestCase {
     func test_delete_emptiesPreviouslyInsertedCache() {
         let sut = makeSUT()
 
-        let insertionError = insert((uniqueFeed().local, Date.now), to: sut)
+        insert((uniqueFeed().local, Date.now), to: sut)
 
-        let exp = expectation(description: "Wait for deletion completion")
-        var deletionError: Error?
-        sut.deleteCachedFeed { receivedDeletionError in
-            deletionError = receivedDeletionError
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: 1.0)
-
-        XCTAssertNil(deletionError, "Expected empty cache deletion to succeed")
+        var deletionError = deleteCache(from: sut)
+        XCTAssertNil(deletionError, "Expected non empty cache deletion to succeed")
 
         expect(sut, toRetrieve: .empty)
     }
@@ -256,6 +242,17 @@ final class CodableFeedStoreTests: XCTestCase {
         }
         wait(for: [exp], timeout: 2.0)
         return insertionError
+    }
+
+    private func deleteCache(from sut: CodableFeedStore) -> Error? {
+        let exp = expectation(description: "Wait for deletion completion")
+        var deletionError: Error?
+        sut.deleteCachedFeed { receivedDeletionError in
+            deletionError = receivedDeletionError
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+        return deletionError
     }
 
     private func setupEmptyStoreState() {
