@@ -181,6 +181,24 @@ final class CodableFeedStoreTests: XCTestCase {
         expect(sut, toRetrieve: .empty)
     }
 
+    func test_delete_emptiesPreviouslyInsertedCache() {
+        let sut = makeSUT()
+
+        let insertionError = insert((uniqueFeed().local, Date.now), to: sut)
+
+        let exp = expectation(description: "Wait for deletion completion")
+        var deletionError: Error?
+        sut.deleteCachedFeed { receivedDeletionError in
+            deletionError = receivedDeletionError
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+
+        XCTAssertNil(deletionError, "Expected empty cache deletion to succeed")
+
+        expect(sut, toRetrieve: .empty)
+    }
+
     // - MARK: Helpers
 
     private func makeSUT(
