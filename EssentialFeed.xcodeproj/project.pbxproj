@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E4629FB2D5FC9EC15B834A55 /* CoreDataFeedStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46AC6FBA3E78DA586D2C248 /* CoreDataFeedStoreTests.swift */; };
+		E46E4E4941282D0DD3E8DAF6 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E468402D73BEA14624373ACD /* .gitignore */; };
 		F30822B329CAD55A0004C743 /* ValidateCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30822B229CAD55A0004C743 /* ValidateCacheUseCaseTests.swift */; };
 		F31B959229B29B4500AF2AB6 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31B959129B29B4500AF2AB6 /* URLSessionHTTPClient.swift */; };
 		F31B959A29B2A2E500AF2AB6 /* EssentialFeedAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31B959929B2A2E500AF2AB6 /* EssentialFeedAPIEndToEndTests.swift */; };
@@ -61,6 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E468402D73BEA14624373ACD /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
 		E46AC6FBA3E78DA586D2C248 /* CoreDataFeedStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataFeedStoreTests.swift; sourceTree = "<group>"; };
 		F30822B229CAD55A0004C743 /* ValidateCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateCacheUseCaseTests.swift; sourceTree = "<group>"; };
 		F31B959129B29B4500AF2AB6 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				F38A5D07299911AB0031D4EA /* EssentialFeedTests */,
 				F31B959829B2A2E500AF2AB6 /* EssentialFeedAPIEndToEndTests */,
 				F38A5CFC299911AB0031D4EA /* Products */,
+				E468402D73BEA14624373ACD /* .gitignore */,
 			);
 			sourceTree = "<group>";
 		};
@@ -384,6 +387,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E46E4E4941282D0DD3E8DAF6 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
