@@ -44,45 +44,49 @@ public final class CoreDataFeedStore: FeedStore {
 
     public func retrieve(completion: @escaping RetrievalCompletion) {
         perform { context in
-            do {
-                if let managedCache = try ManagedCache.fetch(in: context) {
-                    completion(.success(CachedFeed(feed: managedCache.localFeed(), timestamp: managedCache.timestamp)))
-                } else {
-                    completion(.success(nil))
+            completion(
+                Result {
+                    try ManagedCache.fetch(in: context).map {
+                        CachedFeed(feed: $0.localFeed(), timestamp: $0.timestamp)
+                    }
                 }
-            } catch {
-                completion(.failure(error))
-            }
+            )
         }
     }
 
     public func insert(_ feed: [LocalFeedImage], timestamp: Date, completion: @escaping InsertionCompletion) {
         perform { context in
-            do {
-                let managedCache = try ManagedCache.createNewSingleInstance(in: context)
-                managedCache.timestamp = timestamp
-                managedCache.feed = ManagedCache.managedImages(for: feed, in: context)
-                try context.save()
-                completion(.success(()))
-            } catch {
-                context.rollback()
-                completion(.failure(error))
-            }
+            completion(
+                Result {
+                    do {
+                        let managedCache = try ManagedCache.createNewSingleInstance(in: context)
+                        managedCache.timestamp = timestamp
+                        managedCache.feed = ManagedCache.managedImages(for: feed, in: context)
+                        try context.save()
+                    } catch {
+                        context.rollback()
+                        throw error
+                    }
+                }
+            )
         }
     }
 
     public func deleteCachedFeed(completion: @escaping DeletionCompletion) {
         perform { context in
-            do {
-                try ManagedCache.delete(in: context)
-                if context.hasChanges {
-                    try context.save()
+            completion(
+                Result {
+                    do {
+                        try ManagedCache.delete(in: context)
+                        if context.hasChanges {
+                            try context.save()
+                        }
+                    } catch {
+                        context.rollback()
+                        throw error
+                    }
                 }
-                completion(.success(()))
-            } catch {
-                context.rollback()
-                completion(.failure(error))
-            }
+            )
         }
     }
 
