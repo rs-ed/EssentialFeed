@@ -9,14 +9,22 @@
     }
   ],
   "defaultOptions" : {
-    "codeCoverage" : false
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:EssentialFeed.xcodeproj",
+          "identifier" : "F3DE3F722A06E472003D024D",
+          "name" : "EssentialFeediOS"
+        }
+      ]
+    }
   },
   "testTargets" : [
     {
       "parallelizable" : true,
       "target" : {
         "containerPath" : "container:EssentialFeed.xcodeproj",
-        "identifier" : "F36C53B22A06E14B00131CF6",
+        "identifier" : "F3DE3F792A06E472003D024D",
         "name" : "EssentialFeediOSTests"
       }
     }
